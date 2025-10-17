@@ -12,92 +12,114 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(45deg, #FFB6C1, #87CEEB, #98FB98);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f0f4f8;
+            color: #4a5568;
+            line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: gradientBG 15s ease infinite;
-            background-size: 400% 400%;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50% }
-            50% { background-position: 100% 50% }
-            100% { background-position: 0% 50% }
         }
 
         .container {
-            text-align: center;
-            padding: 2.5rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 30px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-            backdrop-filter: blur(4px);
-            max-width: 600px;
-            margin: 20px;
-            transform: rotate(-2deg);
-            transition: transform 0.3s ease;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
-        .container:hover {
-            transform: rotate(1deg) scale(1.02);
+        .app-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            color: #FF69B4;
-            margin-bottom: 1.5rem;
-            font-size: 2.5em;
-            text-shadow: 2px 2px #FFD700;
-            letter-spacing: 2px;
+            color: #718096;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        p {
-            color: #4B0082;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-size: 1.2em;
+        .subtitle {
+            color: #805ad5;
+            font-size: 1.2rem;
         }
 
-        .highlight {
-            background: linear-gradient(120deg, #FFD700 0%, #FFA500 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+        .schedule-container {
+            background: #fff5f5;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-block {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .time {
+            width: 100px;
             font-weight: bold;
+            color: #805ad5;
         }
 
-        .emoji {
-            font-size: 1.5em;
-            margin: 0 5px;
+        .task {
+            flex: 1;
+            padding: 0.5rem;
         }
 
-        .bubble {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            .time-block {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .time {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Every Day Schedule <span class="emoji">📅</span></h1>
-        <p>Hey there! <span class="emoji">👋</span> Welcome to your super cool <span class="highlight">Every Day Schedule</span> planner! Get ready to make organizing your day as fun as playing your favorite game! <span class="emoji">🎮</span></p>
-        <p>No more boring schedules! We've created something awesome that'll help you keep track of all your activities, from homework time to playtime! <span class="emoji">⭐</span> Let's make every day amazing together! <span class="emoji">🌈</span></p>
+        <header class="app-header">
+            <h1>Every Day Schedule</h1>
+            <p class="subtitle">Organize your day efficiently</p>
+        </header>
+        
+        <main class="schedule-container">
+            <div class="time-block">
+                <div class="time">9:00 AM</div>
+                <div class="task">Morning Planning Session</div>
+            </div>
+            <div class="time-block">
+                <div class="time">10:00 AM</div>
+                <div class="task">Team Meeting</div>
+            </div>
+            <div class="time-block">
+                <div class="time">12:00 PM</div>
+                <div class="task">Lunch Break</div>
+            </div>
+            <div class="time-block">
+                <div class="time">2:00 PM</div>
+                <div class="task">Project Work</div>
+            </div>
+            <div class="time-block">
+                <div class="time">4:00 PM</div>
+                <div class="task">Review & Planning</div>
+            </div>
+        </main>
     </div>
-
-    <script>
-        // Add floating bubbles for fun!
         function createBubbles() {
             for(let i = 0; i < 15; i++) {
                 const bubble = document.createElement('div');
