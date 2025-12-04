@@ -88,52 +88,99 @@
                 margin-bottom: 0.5rem;
             }
         }
+        /* decorative bubbles */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.12;
+            filter: blur(6px);
+            transform: translate3d(0,0,0);
+            animation: float 12s linear infinite;
+            mix-blend-mode: screen;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0) scale(1); }
+            50% { transform: translateY(-40vh) translateX(10vw) scale(1.15); }
+            100% { transform: translateY(0) translateX(0) scale(1); }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="app-header">
+        <header class="app-header" role="banner">
             <h1>Every Day Schedule</h1>
             <p class="subtitle">Organize your day efficiently</p>
         </header>
-        
-        <main class="schedule-container">
-            <div class="time-block">
-                <div class="time">9:00 AM</div>
-                <div class="task">Morning Planning Session</div>
-            </div>
-            <div class="time-block">
-                <div class="time">10:00 AM</div>
-                <div class="task">Team Meeting</div>
-            </div>
-            <div class="time-block">
-                <div class="time">12:00 PM</div>
-                <div class="task">Lunch Break</div>
-            </div>
-            <div class="time-block">
-                <div class="time">2:00 PM</div>
-                <div class="task">Project Work</div>
-            </div>
-            <div class="time-block">
-                <div class="time">4:00 PM</div>
-                <div class="task">Review & Planning</div>
-            </div>
+
+        <main>
+            <section class="schedule-container" aria-label="Example schedule">
+                <div class="time-block">
+                    <div class="time">9:00 AM</div>
+                    <div class="task">Morning Planning Session</div>
+                </div>
+                <div class="time-block">
+                    <div class="time">10:00 AM</div>
+                    <div class="task">Team Meeting</div>
+                </div>
+                <div class="time-block">
+                    <div class="time">12:00 PM</div>
+                    <div class="task">Lunch Break</div>
+                </div>
+                <div class="time-block">
+                    <div class="time">2:00 PM</div>
+                    <div class="task">Project Work</div>
+                </div>
+                <div class="time-block">
+                    <div class="time">4:00 PM</div>
+                    <div class="task">Review & Planning</div>
+                </div>
+            </section>
+
+            <section style="margin-top:2rem; text-align:center;">
+                <h2 style="color:#718096; margin-bottom:0.5rem">Features</h2>
+                <p style="max-width:700px; margin:0.25rem auto 1rem; color:#4a5568">A clean, minimal starting point to build a personal scheduling app. Mobile-first, accessible, and easy to customize.</p>
+                <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                    <div style="background:#fff; padding:1rem 1.25rem; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.06);">Mobile-first</div>
+                    <div style="background:#fff; padding:1rem 1.25rem; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.06);">Accessible</div>
+                    <div style="background:#fff; padding:1rem 1.25rem; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.06);">Lightweight</div>
+                </div>
+            </section>
         </main>
+
+        <footer style="text-align:center; margin-top:2.5rem; color:#718096;">
+            <small>Built with a minimalist design — Every Day Schedule</small>
+        </footer>
     </div>
-        function createBubbles() {
-            for(let i = 0; i < 15; i++) {
+
+    <!-- decorative bubbles inserted by JS -->
+    <script>
+        function createBubbles(count = 14) {
+            for (let i = 0; i < count; i++) {
                 const bubble = document.createElement('div');
                 bubble.className = 'bubble';
-                const size = Math.random() * 50 + 20;
+                const size = Math.floor(Math.random() * 80) + 24; // 24px - 104px
                 bubble.style.width = `${size}px`;
                 bubble.style.height = `${size}px`;
+                // random soft purple/blue palette
+                const colors = ['#805ad5', '#7f9cf5', '#9f7aea', '#63b3ed'];
+                bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
                 bubble.style.left = `${Math.random() * 100}vw`;
                 bubble.style.top = `${Math.random() * 100}vh`;
-                bubble.style.animationDelay = `${Math.random() * 2}s`;
+                bubble.style.opacity = (Math.random() * 0.18 + 0.06).toFixed(2);
+                bubble.style.animationDuration = `${10 + Math.random() * 10}s`;
+                bubble.style.animationDelay = `${Math.random() * 6}s`;
                 document.body.appendChild(bubble);
             }
         }
-        createBubbles();
+
+        // create bubbles after DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => createBubbles());
+        } else {
+            createBubbles();
+        }
     </script>
 </body>
 </html>
